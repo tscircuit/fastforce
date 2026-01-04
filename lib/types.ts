@@ -66,6 +66,13 @@ export type ForceRelaxationProblem = {
      * Default: 1.0 (no momentum)
      */
     friction?: number
+    /**
+     * Number of final steps during which forces are linearly relaxed.
+     * If > 0, forces are scaled from 1.0 down to 0.0 over the final
+     * relaxationSteps iterations, allowing the system to settle smoothly.
+     * Default: 0 (no relaxation)
+     */
+    relaxationSteps?: number
   }
 }
 

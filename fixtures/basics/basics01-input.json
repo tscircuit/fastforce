@@ -162,24 +162,24 @@
 
   "interactions": {
     "segSegRepel": {
-      "strength": 10,
+      "strength": 1,
       "exponentialDecay": 0.5,
       "overlapMultiplier": 5,
       "minSeparation": 10
     },
     "pointSegRepel": {
-      "strength": 10,
+      "strength": 1,
       "exponentialDecay": 0.5,
       "overlapMultiplier": 5,
       "minSeparation": 10
     },
     "boundsKeepIn": {
-      "strength": 20,
+      "strength": 2,
       "exponentialDecay": 1,
       "overlapMultiplier": 10
     },
     "fixedLengthCorrection": {
-      "strength": 100,
+      "strength": 1,
       "exponentialDecay": 0
     },
     "fixedOrientationCorrection": {
@@ -189,10 +189,11 @@
   },
 
   "solve": {
-    "maxSteps": 500,
+    "maxSteps": 300,
     "stepSize": 0.1,
-    "epsilonMove": 1,
+    "epsilonMove": 0.1,
     "maxMovePerStep": 2,
-    "friction": 0.05
+    "friction": 0.1,
+    "relaxationSteps": 100
   }
 }
