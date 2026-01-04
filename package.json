@@ -8,7 +8,9 @@
     "@tscircuit/math-utils": "^0.0.29",
     "@tscircuit/solver-utils": "^0.0.12",
     "@types/bun": "latest",
-    "graphics-debug": "^0.0.76"
+    "graphics-debug": "^0.0.76",
+    "react-cosmos": "^7.1.0",
+    "react-cosmos-plugin-vite": "^7.1.0"
   },
   "peerDependencies": {
     "typescript": "^5"
