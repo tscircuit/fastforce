@@ -1,20 +1,26 @@
 {
   "bounds": { "minX": 0, "minY": 0, "maxX": 100, "maxY": 100 },
   "boundaryPadding": 2,
-  "layerIds": ["0"],
+  "layerIds": ["0", "1"],
 
   "entities": {
     "points": [
-      { "pointId": "p1", "position": { "x": 20, "y": 50 }, "movable": false, "radius": 0, "layerIds": ["0"] },
-      { "pointId": "p2", "position": { "x": 50, "y": 50 }, "movable": true, "radius": 0, "layerIds": ["0"] },
-      { "pointId": "p3", "position": { "x": 80, "y": 50 }, "movable": false, "radius": 0, "layerIds": ["0"] },
-      { "pointId": "p4", "position": { "x": 50, "y": 20 }, "movable": false, "radius": 0, "layerIds": ["0"] },
-      { "pointId": "p5", "position": { "x": 50, "y": 80 }, "movable": false, "radius": 0, "layerIds": ["0"] }
+      { "pointId": "p1", "position": { "x": 0, "y": 20 }, "movable": false, "radius": 0, "layerIds": ["0"] },
+      { "pointId": "p2", "position": { "x": 30, "y": 20 }, "movable": true, "radius": 0, "layerIds": ["0", "1"] },
+      { "pointId": "p3", "position": { "x": 70, "y": 80 }, "movable": true, "radius": 0, "layerIds": ["0", "1"] },
+      { "pointId": "p4", "position": { "x": 100, "y": 80 }, "movable": false, "radius": 0, "layerIds": ["0"] },
+      { "pointId": "p5", "position": { "x": 0, "y": 0 }, "movable": false, "radius": 0, "layerIds": ["0"] },
+      { "pointId": "p6", "position": { "x": 33, "y": 33 }, "movable": true, "radius": 0, "layerIds": ["0"] },
+      { "pointId": "p7", "position": { "x": 66, "y": 66 }, "movable": true, "radius": 0, "layerIds": ["0"] },
+      { "pointId": "p8", "position": { "x": 100, "y": 100 }, "movable": false, "radius": 0, "layerIds": ["0"] }
     ],
     "segments": [
       { "segmentId": "s1", "startPointId": "p1", "endPointId": "p2", "width": 2, "layerId": "0", "fixedLength": false, "fixedOrientation": false },
-      { "segmentId": "s2", "startPointId": "p2", "endPointId": "p3", "width": 2, "layerId": "0", "fixedLength": false, "fixedOrientation": false },
-      { "segmentId": "s3", "startPointId": "p4", "endPointId": "p5", "width": 2, "layerId": "0", "fixedLength": false, "fixedOrientation": false }
+      { "segmentId": "s2", "startPointId": "p2", "endPointId": "p3", "width": 2, "layerId": "1", "fixedLength": false, "fixedOrientation": false },
+      { "segmentId": "s3", "startPointId": "p3", "endPointId": "p4", "width": 2, "layerId": "0", "fixedLength": false, "fixedOrientation": false },
+      { "segmentId": "s4", "startPointId": "p5", "endPointId": "p6", "width": 2, "layerId": "0", "fixedLength": false, "fixedOrientation": false },
+      { "segmentId": "s5", "startPointId": "p6", "endPointId": "p7", "width": 2, "layerId": "0", "fixedLength": false, "fixedOrientation": false },
+      { "segmentId": "s6", "startPointId": "p7", "endPointId": "p8", "width": 2, "layerId": "0", "fixedLength": false, "fixedOrientation": false }
     ]
   },
 

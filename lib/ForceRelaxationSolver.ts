@@ -955,16 +955,6 @@ export class ForceRelaxationSolver extends BaseSolver {
       }
     }
 
-    // Iteration label
-    graphics.texts.push({
-      text: `iter=${this.iterations}${this.solved ? " (solved)" : ""}`,
-      x: bounds.minX,
-      y: bounds.maxY,
-      anchor: "start",
-      fontSize: 10,
-      color: "black",
-    })
-
     return graphics
   }
 }
