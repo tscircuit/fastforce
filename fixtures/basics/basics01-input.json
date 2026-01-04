@@ -179,7 +179,7 @@
       "overlapMultiplier": 10
     },
     "fixedLengthCorrection": {
-      "strength": 5,
+      "strength": 1000,
       "exponentialDecay": 0
     },
     "fixedOrientationCorrection": {
@@ -189,7 +189,7 @@
   },
 
   "solve": {
-    "maxSteps": 500,
+    "maxSteps": 100,
     "stepSize": 0.1,
     "epsilonMove": 0.001,
     "maxMovePerStep": 2
