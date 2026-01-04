@@ -42,20 +42,34 @@
       },
       {
         "pointId": "p6",
-        "position": { "x": 33, "y": 33 },
+        "position": { "x": 25, "y": 12 },
         "movable": true,
         "radius": 0,
         "layerIds": ["0"]
       },
       {
         "pointId": "p7",
-        "position": { "x": 66, "y": 66 },
+        "position": { "x": 42, "y": 28 },
         "movable": true,
         "radius": 0,
         "layerIds": ["0"]
       },
       {
         "pointId": "p8",
+        "position": { "x": 58, "y": 72 },
+        "movable": true,
+        "radius": 0,
+        "layerIds": ["0"]
+      },
+      {
+        "pointId": "p9",
+        "position": { "x": 75, "y": 88 },
+        "movable": true,
+        "radius": 0,
+        "layerIds": ["0"]
+      },
+      {
+        "pointId": "p10",
         "position": { "x": 100, "y": 100 },
         "movable": false,
         "radius": 0,
@@ -122,6 +136,26 @@
         "fixedLength": false,
         "fixedOrientation": false,
         "color": "orange"
+      },
+      {
+        "segmentId": "s7",
+        "startPointId": "p8",
+        "endPointId": "p9",
+        "width": 2,
+        "layerId": "0",
+        "fixedLength": false,
+        "fixedOrientation": false,
+        "color": "orange"
+      },
+      {
+        "segmentId": "s8",
+        "startPointId": "p9",
+        "endPointId": "p10",
+        "width": 2,
+        "layerId": "0",
+        "fixedLength": false,
+        "fixedOrientation": false,
+        "color": "orange"
       }
     ]
   },
@@ -131,13 +165,13 @@
       "strength": 10,
       "exponentialDecay": 0.5,
       "overlapMultiplier": 5,
-      "minSeparation": 1
+      "minSeparation": 10
     },
     "pointSegRepel": {
       "strength": 10,
       "exponentialDecay": 0.5,
       "overlapMultiplier": 5,
-      "minSeparation": 1
+      "minSeparation": 10
     },
     "boundsKeepIn": {
       "strength": 20,
