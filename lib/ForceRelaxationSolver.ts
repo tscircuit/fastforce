@@ -929,7 +929,7 @@ export class ForceRelaxationSolver extends BaseSolver {
           { x: endPt.position.x, y: endPt.position.y },
         ],
         strokeWidth: seg.width,
-        strokeColor: "blue",
+        strokeColor: seg.color ?? "blue",
         strokeDash: seg.layerId !== "0" ? [4, 2] : undefined,
         label: seg.segmentId,
         layer: seg.layerId,

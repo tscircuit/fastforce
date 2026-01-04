@@ -104,6 +104,11 @@ export type SegmentEntity = {
    * If true, enforce constant orientation via fixedOrientationCorrection.
    */
   fixedOrientation: boolean
+
+  /**
+   * Optional color for visualization.
+   */
+  color?: string
 }
 
 /**
