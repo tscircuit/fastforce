@@ -93,7 +93,7 @@
         "endPointId": "p3",
         "width": 2,
         "layerId": "1",
-        "fixedLength": false,
+        "fixedLength": true,
         "fixedOrientation": true,
         "color": "blue"
       },
@@ -179,7 +179,7 @@
       "overlapMultiplier": 10
     },
     "fixedLengthCorrection": {
-      "strength": 1000,
+      "strength": 100,
       "exponentialDecay": 0
     },
     "fixedOrientationCorrection": {
@@ -189,9 +189,9 @@
   },
 
   "solve": {
-    "maxSteps": 100,
+    "maxSteps": 500,
     "stepSize": 0.1,
-    "epsilonMove": 0.001,
+    "epsilonMove": 0.1,
     "maxMovePerStep": 2
   }
 }
