@@ -5,7 +5,10 @@
   "private": true,
   "devDependencies": {
     "@biomejs/biome": "^2.3.11",
-    "@types/bun": "latest"
+    "@tscircuit/math-utils": "^0.0.29",
+    "@tscircuit/solver-utils": "^0.0.12",
+    "@types/bun": "latest",
+    "graphics-debug": "^0.0.76"
   },
   "peerDependencies": {
     "typescript": "^5"
