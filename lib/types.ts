@@ -59,6 +59,13 @@ export type ForceRelaxationProblem = {
     stepSize: number
     epsilonMove: number
     maxMovePerStep?: number
+    /**
+     * Friction coefficient for velocity damping (0 to 1).
+     * - 1.0 = full friction (no momentum, pure gradient descent)
+     * - 0.0 = no friction (full momentum, no damping)
+     * Default: 1.0 (no momentum)
+     */
+    friction?: number
   }
 }
 

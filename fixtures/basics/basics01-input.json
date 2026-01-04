@@ -191,7 +191,8 @@
   "solve": {
     "maxSteps": 500,
     "stepSize": 0.1,
-    "epsilonMove": 0.1,
-    "maxMovePerStep": 2
+    "epsilonMove": 1,
+    "maxMovePerStep": 2,
+    "friction": 0.05
   }
 }

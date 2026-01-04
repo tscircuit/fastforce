@@ -197,6 +197,10 @@ export class ForceRelaxationSolver extends BaseSolver {
   private fx!: Float64Array
   private fy!: Float64Array
 
+  // velocities (for momentum)
+  private vx!: Float64Array
+  private vy!: Float64Array
+
   // broadphase grid (segments)
   private gridOriginX = 0
   private gridOriginY = 0
@@ -249,6 +253,8 @@ export class ForceRelaxationSolver extends BaseSolver {
     this.movable = new Uint8Array(this.pointsCount)
     this.fx = new Float64Array(this.pointsCount)
     this.fy = new Float64Array(this.pointsCount)
+    this.vx = new Float64Array(this.pointsCount)
+    this.vy = new Float64Array(this.pointsCount)
 
     if (this.useLayerBitmask) {
       this.pointLayerMask32 = new Uint32Array(this.pointsCount)
@@ -833,21 +839,28 @@ export class ForceRelaxationSolver extends BaseSolver {
       }
     }
 
-    // ---- Integrate movement ----
+    // ---- Integrate movement with momentum ----
     const stepSize = this.input.solve.stepSize
     const epsMove = this.input.solve.epsilonMove
     const maxMovePerStep = this.input.solve.maxMovePerStep
+    const friction = this.input.solve.friction ?? 1.0
+    const momentum = 1.0 - friction
 
     let maxMove = 0
 
     for (let i = 0; i < this.pointsCount; i++) {
       if (this.movable[i] === 0) continue
 
-      let dx = this.fx[i] * stepSize
-      let dy = this.fy[i] * stepSize
+      // Update velocity: v = v * momentum + force * stepSize
+      let vx = this.vx[i] * momentum + this.fx[i] * stepSize
+      let vy = this.vy[i] * momentum + this.fy[i] * stepSize
 
-      const m2 = dx * dx + dy * dy
-      if (m2 <= EPS) continue
+      const m2 = vx * vx + vy * vy
+      if (m2 <= EPS) {
+        this.vx[i] = 0
+        this.vy[i] = 0
+        continue
+      }
 
       let m = Math.sqrt(m2)
 
@@ -857,13 +870,18 @@ export class ForceRelaxationSolver extends BaseSolver {
         m > maxMovePerStep
       ) {
         const s = maxMovePerStep / m
-        dx *= s
-        dy *= s
+        vx *= s
+        vy *= s
         m = maxMovePerStep
       }
 
-      this.px[i] += dx
-      this.py[i] += dy
+      // Store updated velocity
+      this.vx[i] = vx
+      this.vy[i] = vy
+
+      // Update position
+      this.px[i] += vx
+      this.py[i] += vy
 
       // write back to the original objects (so visualization / consumers see updates)
       const p = this.pointsRef[i]
