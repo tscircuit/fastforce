@@ -16,7 +16,7 @@
     ],
     "segments": [
       { "segmentId": "s1", "startPointId": "p1", "endPointId": "p2", "width": 2, "layerId": "0", "fixedLength": false, "fixedOrientation": false },
-      { "segmentId": "s2", "startPointId": "p2", "endPointId": "p3", "width": 2, "layerId": "1", "fixedLength": false, "fixedOrientation": false },
+      { "segmentId": "s2", "startPointId": "p2", "endPointId": "p3", "width": 2, "layerId": "1", "fixedLength": false, "fixedOrientation": true },
       { "segmentId": "s3", "startPointId": "p3", "endPointId": "p4", "width": 2, "layerId": "0", "fixedLength": false, "fixedOrientation": false },
       { "segmentId": "s4", "startPointId": "p5", "endPointId": "p6", "width": 2, "layerId": "0", "fixedLength": false, "fixedOrientation": false },
       { "segmentId": "s5", "startPointId": "p6", "endPointId": "p7", "width": 2, "layerId": "0", "fixedLength": false, "fixedOrientation": false },
