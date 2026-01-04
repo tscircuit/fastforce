@@ -1,7 +1,7 @@
 {
   "name": "@tscircuit/fastforce",
   "main": "dist/index.js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": "https://github.com/tscircuit/fastforce",
   "type": "module",
   "scripts": {

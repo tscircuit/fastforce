@@ -2,7 +2,7 @@
 
 Fast force-directed graph solving with support for segment-applied forces.
 
-[View online](
+[View online](https://fastforce.vercel.app/?fixture=%7B%22path%22%3A%22fixtures%2Fbasics%2Fbasics01.fixture.tsx%22%7D)
 
 ## Installation
 
