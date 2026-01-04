@@ -2,7 +2,10 @@
   "name": "fastforce",
   "module": "index.ts",
   "type": "module",
-  "private": true,
+  "scripts": {
+    "start": "cosmos",
+    "build:site": "cosmos-export"
+  },
   "devDependencies": {
     "@biomejs/biome": "^2.3.11",
     "@tscircuit/math-utils": "^0.0.29",

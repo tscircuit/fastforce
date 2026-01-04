@@ -1,0 +1,76 @@
+import type { GraphicsObject } from "graphics-debug"
+import type { ForceRelaxationProblem } from "../types"
+
+export const visualizeInputProblem = (
+  problem: ForceRelaxationProblem,
+): GraphicsObject => {
+  const graphics: Required<GraphicsObject> = {
+    points: [],
+    lines: [],
+    rects: [],
+    arrows: [],
+    circles: [],
+    texts: [],
+    coordinateSystem: "cartesian",
+    title: "force relaxation solver",
+  }
+
+  const { bounds, entities } = problem
+  const { points, segments } = entities
+
+  // Build point lookup for segment endpoints
+  const pointMap = new Map(points.map((p) => [p.pointId, p]))
+
+  // Draw bounds
+  graphics.rects.push({
+    center: {
+      x: (bounds.minX + bounds.maxX) / 2,
+      y: (bounds.minY + bounds.maxY) / 2,
+    },
+    width: bounds.maxX - bounds.minX,
+    height: bounds.maxY - bounds.minY,
+    stroke: "gray",
+    label: "bounds",
+  })
+
+  // Draw segments as lines
+  for (const seg of segments) {
+    const startPt = pointMap.get(seg.startPointId)
+    const endPt = pointMap.get(seg.endPointId)
+    if (!startPt || !endPt) continue
+
+    graphics.lines.push({
+      points: [
+        { x: startPt.position.x, y: startPt.position.y },
+        { x: endPt.position.x, y: endPt.position.y },
+      ],
+      strokeWidth: seg.width,
+      strokeColor: "blue",
+      label: seg.segmentId,
+      layer: seg.layerId,
+    })
+  }
+
+  // Draw points
+  for (const pt of points) {
+    graphics.points.push({
+      x: pt.position.x,
+      y: pt.position.y,
+      color: pt.movable ? "green" : "red",
+      label: pt.pointId,
+      layer: pt.layerIds[0],
+    })
+
+    // Draw radius circle if point has one
+    if (pt.radius > 0) {
+      graphics.circles.push({
+        center: { x: pt.position.x, y: pt.position.y },
+        radius: pt.radius,
+        stroke: pt.movable ? "green" : "red",
+        layer: pt.layerIds[0],
+      })
+    }
+  }
+
+  return graphics
+}

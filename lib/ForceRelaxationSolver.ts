@@ -1,6 +1,7 @@
 import { BaseSolver } from "@tscircuit/solver-utils"
 import type { GraphicsObject } from "graphics-debug"
 import type { ForceRelaxationProblem } from "./types"
+import { visualizeInputProblem } from "./visualization/visualizeInputProblem"
 
 export class ForceRelaxationSolver extends BaseSolver {
   constructor(public input: ForceRelaxationProblem) {
@@ -13,6 +14,9 @@ export class ForceRelaxationSolver extends BaseSolver {
   }
 
   override visualize(): GraphicsObject {
+    if (this.iterations === 0) {
+      return visualizeInputProblem(this.input)
+    }
     const graphics = {
       points: [],
       lines: [],
