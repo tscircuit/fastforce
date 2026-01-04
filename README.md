@@ -7,7 +7,7 @@ Fast force-directed graph solving with support for segment-applied forces.
 ## Installation
 
 ```bash
-npm install fastforce
+npm install @tscircuit/fastforce
 ```
 
 ## Usage
