@@ -841,13 +841,14 @@ export class ForceRelaxationSolver extends BaseSolver {
 
     // ---- Linear force relaxation in final steps ----
     const relaxationSteps = this.input.solve.relaxationSteps ?? 0
+    let relaxationScale = 1.0
     if (relaxationSteps > 0) {
       const remainingSteps = this.MAX_ITERATIONS - this.iterations
       if (remainingSteps <= relaxationSteps) {
-        const scale = remainingSteps / relaxationSteps
+        relaxationScale = remainingSteps / relaxationSteps
         for (let i = 0; i < this.pointsCount; i++) {
-          this.fx[i] *= scale
-          this.fy[i] *= scale
+          this.fx[i] *= relaxationScale
+          this.fy[i] *= relaxationScale
         }
       }
     }
@@ -856,7 +857,12 @@ export class ForceRelaxationSolver extends BaseSolver {
     const stepSize = this.input.solve.stepSize
     const epsMove = this.input.solve.epsilonMove
     const maxMovePerStep = this.input.solve.maxMovePerStep
-    const friction = this.input.solve.friction ?? 1.0
+    const baseFriction = this.input.solve.friction ?? 1.0
+    // During relaxation, friction increases towards 1.0 (full damping)
+    const friction =
+      relaxationScale < 1.0
+        ? 1.0 - (1.0 - baseFriction) * relaxationScale
+        : baseFriction
     const momentum = 1.0 - friction
 
     let maxMove = 0
