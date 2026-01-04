@@ -1,6 +1,7 @@
 {
-  "name": "@tscircuit/fastforce",
+  "name": "fastforce",
   "main": "dist/index.js",
+  "repository": "https://github.com/tscircuit/fastforce",
   "type": "module",
   "scripts": {
     "start": "cosmos",
