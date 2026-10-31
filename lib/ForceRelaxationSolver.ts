@@ -459,6 +459,7 @@ export class ForceRelaxationSolver extends BaseSolver {
     } = this.input.interactions
 
     // ---- Segment–Segment repulsion (same-layer only) ----
+    this.segVisitedMark.fill(0)
     for (let i = 0; i < this.segmentsCount; i++) {
       const a0 = this.segA[i]
       const a1 = this.segB[i]
@@ -466,9 +467,6 @@ export class ForceRelaxationSolver extends BaseSolver {
 
       const layerI = this.segLayerIdx[i]
       if (layerI < 0) continue
-
-      // If both endpoints are fixed, seg can't move -> skip pairwise work
-      if ((this.movable[a0] | this.movable[a1]) === 0) continue
 
       const cminx = this.segCellMinX[i]
       const cmaxx = this.segCellMaxX[i]
@@ -605,6 +603,7 @@ export class ForceRelaxationSolver extends BaseSolver {
     }
 
     // ---- Point–Segment repulsion (layer compatible) ----
+    this.segVisitedMark.fill(0)
     {
       const ox = this.gridOriginX
       const oy = this.gridOriginY
