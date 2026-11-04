@@ -866,9 +866,19 @@ export class ForceRelaxationSolver extends BaseSolver {
     const momentum = 1.0 - friction
 
     let maxMove = 0
+    let maxForceMove = 0
 
     for (let i = 0; i < this.pointsCount; i++) {
       if (this.movable[i] === 0) continue
+
+      if (momentum !== 0) {
+        // A turning point can have little movement while a substantial force
+        // remains. Check the net force before it cancels the stored velocity.
+        maxForceMove = Math.max(
+          maxForceMove,
+          Math.hypot(this.fx[i] * stepSize, this.fy[i] * stepSize),
+        )
+      }
 
       // Update velocity: v = v * momentum + force * stepSize
       let vx = this.vx[i] * momentum + this.fx[i] * stepSize
@@ -909,11 +919,14 @@ export class ForceRelaxationSolver extends BaseSolver {
 
       if (m > maxMove) maxMove = m
     }
-    // Progress heuristic (shrinks as movement shrinks)
+    // Progress reflects both motion and the force driving it.
     // BaseSolver typically exposes `progress`, so set it if present.
-    ;(this as any).progress = Math.min(1, epsMove / Math.max(epsMove, maxMove))
+    ;(this as any).progress = Math.min(
+      1,
+      epsMove / Math.max(epsMove, maxMove, maxForceMove),
+    )
 
-    if (maxMove <= epsMove) {
+    if (maxMove <= epsMove && maxForceMove <= epsMove) {
       this.solved = true
     }
   }
